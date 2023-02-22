@@ -48,96 +48,64 @@
   <script>
 
     // theme toggle button
-    var btn = document.querySelector('.btn-circle');
-    var body = document.querySelector("body")
 
-    
+    const toggleButton = document.querySelector('.btn-circle');
+    const body = document.body;
+    const themes = ['light', 'third-theme', 'dark'];
     let state = 0;
-    btn.addEventListener('click', function() {
 
-      switch(state) {
-        // light theme
-        case 0:
-          btn.classList.add('active');
-          body.setAttribute('data-theme', 'light');
-          state += 1
-          break;
-        // dark theme
-        case 1:
-          btn.classList.add('active-2');
-          body.setAttribute('data-theme', 'third-theme');
-          state += 1;
-          break;
-        // default theme
-        default:
-          state = 0;
-          btn.classList.remove('active-2')
-          btn.classList.remove('active')
-          body.setAttribute('data-theme', "dark")
-      }
-    })
-
-    // calculator variables such as all the buttons and the screen displaying the calculations
-    var calBtns = document.querySelectorAll('.grid')
-    var screen = document.querySelector('.screen')
-
-    var stack = []
-    
-    // handle keypress from keyboard and validates if it is a key on the calculator
-    function checkValidKey(char) {
-      const keyCode = char.charCodeAt(0)
-      if (48 <= keyCode && keyCode <= 57) { return true }
-      if (keyCode === 61 | keyCode === 43) { return true}
-      switch (keyCode) {
-        case 61:
-          return true;
-          break;
-        case 95:
-          return true;
-          break;
-        case 47:
-          return true;
-          break;
-        case 120:
-          return true;
-          break;
-        case 42:
-          return true;
-          break;
-        case 45:
-          return true;
-          break;
-        case 66:
-          return true;
-          break;
-        case 69:
-          return true;
-          break;
-      }
-
-      return false
+    function toggleTheme() {
+      state = (state + 1) % themes.length;
+      const theme = themes[state];
+      body.setAttribute('data-theme', theme);
+      toggleButton.classList.toggle('active', state === 0);
+      toggleButton.classList.toggle('active-2', state === 1);
     }
-    
+
+    toggleButton.addEventListener('click', toggleTheme);
+
+    // refactored by gpt 
+
+
+
+    const calBtns = document.querySelectorAll('.grid');
+    const screen = document.querySelector('.screen');
+    const validKeysRegex = /^[\dx+\-*\/.=]|Enter$|^Backspace$/;
+    let stack = [];
+
+    function checkValidKey(char) {
+      return validKeysRegex.test(char);
+    }
+
+
     // listens for a keypress
     body.addEventListener('keydown', function(e) {
+      console.log(e.key)
       const isValidKey = checkValidKey(e.key)
+      console.log(isValidKey);
       
       if (isValidKey) {
         let key = e.key
           switch(key) {
             case "x":
               key = "*"
+              break;
             case "Backspace":
               key = false
               stack.pop()
+              screen.innerText = stack.join('')
+              break;
             case "=":
               key = false
               screen.innerText = eval(stack.join(''))
               stack = []
+              break;
             case "Enter":
               key = false
+              console.log("yee?")
               screen.innerText = eval(stack.join(''))
               stack = []
+              break;
           }
           key ? stack.push(key) : {}
           key ? screen.innerText = stack.join('') : {}
@@ -148,7 +116,7 @@
     })
 
 
-    // listens to which button is pressed on the calculator
+    // listens to which button is clicked on the calculator
     calBtns.forEach(function(element) {
       element.addEventListener('click', function(e) {
         const value = e.target.innerText
@@ -180,6 +148,8 @@
             break;
 
         }
+
+        console.log(stack)
 
       })
     })
