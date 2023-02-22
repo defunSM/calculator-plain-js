@@ -58,17 +58,13 @@
       state = (state + 1) % themes.length;
       const theme = themes[state];
       body.setAttribute('data-theme', theme);
-      toggleButton.classList.toggle('active', state === 0);
-      toggleButton.classList.toggle('active-2', state === 1);
+      toggleButton.classList.toggle('active', state === 1);
+      toggleButton.classList.toggle('active-2', state === 2);
     }
 
     toggleButton.addEventListener('click', toggleTheme);
 
-    // refactored by gpt 
-
-
-
-    const calBtns = document.querySelectorAll('.grid');
+    const calBtns = document.querySelector('.grid').childNodes;
     const screen = document.querySelector('.screen');
     const validKeysRegex = /^[\dx+\-*\/.=]|Enter$|^Backspace$/;
     let stack = [];
@@ -78,82 +74,72 @@
     }
 
 
+    function handleInput(key) {
+      switch (key) {
+        case "x":
+          key = "*"
+          break;
+        case "Backspace":
+          stack.pop()
+          break;
+        case "=":
+        case "Enter":
+          screen.innerText = eval(stack.join(''))
+          stack = []
+          break;
+        default:
+          stack.push(key)
+          break;
+      }
+      screen.innerText = stack.join('')
+    }
+
     // listens for a keypress
     body.addEventListener('keydown', function(e) {
-      console.log(e.key)
-      const isValidKey = checkValidKey(e.key)
-      console.log(isValidKey);
-      
+      const key = e.key
+      const isValidKey = checkValidKey(key)
+      console.log(isValidKey)
       if (isValidKey) {
-        let key = e.key
-          switch(key) {
-            case "x":
-              key = "*"
-              break;
-            case "Backspace":
-              key = false
-              stack.pop()
-              screen.innerText = stack.join('')
-              break;
-            case "=":
-              key = false
-              screen.innerText = eval(stack.join(''))
-              stack = []
-              break;
-            case "Enter":
-              key = false
-              console.log("yee?")
-              screen.innerText = eval(stack.join(''))
-              stack = []
-              break;
-          }
-          key ? stack.push(key) : {}
-          key ? screen.innerText = stack.join('') : {}
-
-          console.log(stack)
+        handleInput(key)
+        console.log(stack)
       }
-
     })
-
 
     // listens to which button is clicked on the calculator
     calBtns.forEach(function(element) {
       element.addEventListener('click', function(e) {
         const value = e.target.innerText
-
-        switch(value) {
-          case "=":
-            try {
-              screen.innerText = eval(stack.join(''))
-            } catch (error) {
-              screen.innerText = "ERROR"
-            }
-            stack = []
-            break;
+        switch (value) {
           case "RESET":
             stack = []
             screen.innerText = ""
             break;
           case "DEL":
             stack.pop()
-            screen.innerText = stack.join('')
             break;
           case "x":
             stack.push("*")
-            screen.innerText = stack.join('')
             break;
           default:
             stack.push(value)
-            screen.innerText = stack.join('')
             break;
-
         }
+        
+        screen.innerText = stack.join('')
 
+        if (value === "=") {
+          try {
+            stack.pop()
+            screen.innerText = eval(stack.join(''))
+          } catch (error) {
+            screen.innerText = "ERROR"
+          }
+          stack = []
+        }
         console.log(stack)
-
       })
     })
-
+        
 
 
 
