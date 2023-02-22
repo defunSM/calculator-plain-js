@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan&display=swap');
+
+:root {
+  --primary-main-bg-color: hsl(222, 26%, 31%);
+  --primary-keypad-bg-color: hsl(223, 31%, 20%);
+  --primary-screen-bg-color: hsl(224, 36%, 15%);
+  --primary-key-bg-color: hsl(30, 25%, 89%);
+  --primary-key-color: hsl(225, 21%, 49%);
+  --primary-key-shadow-color: hsl(224, 28%, 35%);
+  --primary-orange-key-color: hsl(6, 63%, 50%);
+  --primary-key-orange-shadow-color: hsl(6, 70%, 34%);
+  --primary-key-grey-shadow: hsl(28, 16%, 65%);
+  --primary-key-blue-shadow: hsl(224, 28%, 35%);
+  --text-color: hsl(221, 14%, 31%);
+  --text-color-2: white;
+  --toggle-bg: hsl(6, 63%, 50%);
+  --header-text: white;
+}
+
+[data-theme="dark"] {
+  --primary-main-bg-color: hsl(0, 0%, 90%);
+  --primary-keypad-bg-color: hsl(0, 5%, 81%);
+  --text-color: hsl(60, 10%, 19%);
+  --primary-screen-bg-color: hsl(0, 0%, 93%);
+  --primary-key-color: hsl(185, 42%, 37%);
+  --primary-key-shadow-color: hsl(185, 58%, 25%);
+  --toggle-bg: hsl(25, 98%, 40%);
+  --header-text: black;
+  --text-color-2: black;
+}
+
+[data-theme="third-theme"] {
+  --primary-main-bg-color: hsl(268, 75%, 9%);
+  --primary-keypad-bg-color: hsl(268, 71%, 12%);
+  --primary-key-bg-color: hsl(268, 47%, 21%);
+  --primary-key-color: hsl(52, 100%, 62%);
+  --primary-screen-bg-color: hsl(268, 71%, 12%);
+  --primary-key-color: hsl(281, 89%, 26%);
+  --primary-key-shadow-color: hsl(290, 70%, 36%);
+  --text-color: hsl(52, 100%, 62%);
+  --text-color-2: hsl(52, 100%, 62%);
+  --toggle-bg: hsl(176, 100%, 44%);
+
+  --primary-orange-key-color: hsl(176, 100%, 44%);
+  --primary-key-orange-shadow-color: hsl(177, 92%, 70%);
+
+  --primary-key-grey-shadow:  hsl(290, 70%, 36%);
+  --primary-key-blue-shadow:   hsl(285, 91%, 52%);
+}
+
+body {
+  font-family: 'League Spartan', sans-serif;
+  background-color: var(--primary-main-bg-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+button {
+  cursor: pointer;
+  color: var(--primary-key-color);
+  background: var(--primary-key-bg-color);
+
+  color: var(--text-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border-style: solid;
+  border-color: var(--primary-key-bg-color);
+  border-bottom: 5px solid var(--primary-key-grey-shadow);
+}
+
+button:hover {
+  filter: saturate(5);
+}
+
+.stick-to-end {
+  display: relative;
+  justify-content: right;
+  margin-left: 7rem;
+  margin-top: 0.4rem;
+  text-align: right;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-self: center;
+  max-width: 340px;
+}
+
+.theme-container {
+  display: flex;
+  justify-content: right;
+  letter-spacing: 0.3rem;
+  color: var(--text-color-2);
+}
+
+.attribution { font-size: 11px; text-align: center; color: black; }
+.attribution a { color: black; }
+
+.header {
+  margin-bottom: 1rem;
+  color: var(--header-text);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  gap: 1rem 5rem 1rem;
+}
+
+.calculation-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--primary-screen-bg-color);
+  margin-bottom: 1rem;
+  text-align: right;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: var(--text-color-2);
+  font-size: 2rem;
+  font-weight: bold;
+  min-height: 3rem;
+}
+
+.grid {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 1rem;
+  background-color: var(--primary-keypad-bg-color);
+  border-radius: 1rem;
+  gap: 1rem;
+}
+
+#calc-text {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.btn-holder {
+  height: 26px;
+  border-radius: 18px;
+  background-color: var(--primary-screen-bg-color);
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+  flex-direction: row;
+  min-width: 3rem;
+
+}
+
+.btn-circle {
+  background-color: var(--toggle-bg);
+  transform: translateX(0px);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  transition: 300ms;
+}
+
+.active {
+  background-color: rgb(218, 114, 80);
+  transform: translateX(15px);
+  transition: 300ms;
+}
+
+.active-2 {
+  background-color: rgb(218, 114, 80);
+  transform: translateX(30px);
+  transition: 300ms;
+}
+
+.checkbox {
+  display: none;
+}
+
+.last-group-button {
+  grid-column: span 2;
+}
+
+.orange-button {
+  background-color: var(--primary-orange-key-color);
+  border-color: var(--primary-orange-key-color);
+  border-bottom: 5px solid var(--primary-key-orange-shadow-color);
+  color: var(--text-color-2);
+}
+
+.blue-button {
+  background-color: var(--primary-key-color);
+  border-color: var(--primary-key-color);
+  color: white;
+  border-bottom: 5px solid var(--primary-key-blue-shadow);
+  font-size: 1.3rem;
+}
+
+@media (min-width: 550px) {
+  .container {
+    min-width: 550px;
+  }
+  .stick-to-end {
+    margin-left: 20rem;
+  }
+}
