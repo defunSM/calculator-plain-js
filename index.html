@@ -9,7 +9,7 @@
   <title>Frontend Mentor | Calculator app</title>
 
 </head>
-<body data-theme="light">
+<body data-theme="dark">
   <div class="container">
       <div class="theme-container">1 2 3</div>
       <div class="header">
@@ -38,7 +38,6 @@
         <button class="button-style-1">0</button>
         <button class="button-style-1 divide-button">/</button>
         <button class="button-style-1 multiply-button">x</button>
-
         <button class="blue-button last-group-button ">RESET</button>
         <button class="button-style-1 last-group-button orange-button">=</button>
 
@@ -59,7 +58,7 @@
         // light theme
         case 0:
           btn.classList.add('active');
-          body.setAttribute('data-theme', 'dark');
+          body.setAttribute('data-theme', 'light');
           state += 1
           break;
         // dark theme
@@ -73,7 +72,7 @@
           state = 0;
           btn.classList.remove('active-2')
           btn.classList.remove('active')
-          body.setAttribute('data-theme', "light")
+          body.setAttribute('data-theme', "dark")
       }
     })
 
@@ -82,7 +81,6 @@
     var screen = document.querySelector('.screen')
 
     var stack = []
-    var displayStack = []
 
     // listens to which button is pressed on the calculator
     calBtns.forEach(function(element) {

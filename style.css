@@ -17,7 +17,7 @@
   --header-text: white;
 }
 
-[data-theme="dark"] {
+[data-theme="light"] {
   --primary-main-bg-color: hsl(0, 0%, 90%);
   --primary-keypad-bg-color: hsl(0, 5%, 81%);
   --text-color: hsl(60, 10%, 19%);
