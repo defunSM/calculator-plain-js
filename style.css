@@ -88,7 +88,7 @@ button:hover {
   display: relative;
   justify-content: right;
   margin-left: 7rem;
-  margin-top: 0.4rem;
+  margin-top: 1.8rem;
   text-align: right;
   font-weight: bold;
   font-size: 0.8rem;
@@ -105,15 +105,15 @@ button:hover {
 .theme-container {
   display: flex;
   justify-content: right;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.4rem;
   color: var(--text-color-2);
+  margin-bottom: -1rem;
 }
 
 .attribution { font-size: 11px; text-align: center; color: black; }
 .attribution a { color: black; }
 
 .header {
-  margin-bottom: 1rem;
   color: var(--header-text);
   display: flex;
   flex-direction: row;
@@ -132,16 +132,16 @@ button:hover {
   padding: 1rem;
   border-radius: 0.5rem;
   color: var(--text-color-2);
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
-  min-height: 3rem;
+  min-height: 5rem;
 }
 
 .grid {
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding: 1rem;
+  padding: 2rem;
   background-color: var(--primary-keypad-bg-color);
   border-radius: 1rem;
   gap: 1rem;
@@ -162,7 +162,8 @@ button:hover {
   padding-right: 5px;
   cursor: pointer;
   flex-direction: row;
-  min-width: 3rem;
+  min-width: 4rem;
+  margin-top: 1.2rem;
 
 }
 
@@ -177,13 +178,13 @@ button:hover {
 
 .active {
   background-color: rgb(218, 114, 80);
-  transform: translateX(15px);
+  transform: translateX(1.5rem);
   transition: 300ms;
 }
 
 .active-2 {
   background-color: rgb(218, 114, 80);
-  transform: translateX(30px);
+  transform: translateX(3rem);
   transition: 300ms;
 }
 
